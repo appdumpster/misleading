@@ -18,4 +18,4 @@ jobs:
       uses: appdumpster/workflows/.github/workflows/sign-artifact.yml@main
       with:
         subject-name: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_REPO }}
-        subject-digest: ${{ env.SOME_DIGEST }}
+        subject-digest: ${{ env.IMAGE_DIGEST }}
