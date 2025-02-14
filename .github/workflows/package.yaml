@@ -12,30 +12,8 @@ env:
   IMAGE_TAGS: latest
 
 jobs:
-  build:
-    if: ${{ github.ref == 'refs/heads/main' }}
-    runs-on: ubuntu-latest
-
-    permissions:
-      # Needed for signing the container image with GitHub OIDC Token
-      id-token: write
-      contents: read
-      attestations: write
-      packages: write
-
-    outputs:
-      image:  ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_REPO }}
-      digest: ${{ steps.push-image.outputs.digest }}
-
-    steps:
-    - name: Log in to quay.io
-      uses: redhat-actions/podman-login@v1
-      with:
-        username: ${{ vars.REGISTRY_QUAY_IO_USER }}
-        password: ${{ secrets.REGISTRY_QUAY_IO_PASSWORD }}
-        registry: quay.io
-
-    - name: Generate artifact attestation
+  # No build actually happens here.
+  name: Generate artifact attestation
       uses: appdumpster/.github/workflows/sign-artifact.yml@main
       with:
         subject-name: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_REPO }}
