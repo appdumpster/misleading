@@ -1,0 +1,42 @@
+---
+name: Package
+
+on:
+  push:
+  workflow_dispatch:
+
+env:
+  IMAGE_REGISTRY: quay.io
+  IMAGE_REPO: rbean/misleading
+  IMAGE_DIGEST: sha256:6223d8cc2a50846c1ef00bbdedeb9a14e22b66c1f5d7438e7024085b134c40f6
+  IMAGE_TAGS: latest
+
+jobs:
+  build:
+    if: ${{ github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+
+    permissions:
+      # Needed for signing the container image with GitHub OIDC Token
+      id-token: write
+      contents: read
+      attestations: write
+      packages: write
+
+    outputs:
+      image:  ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_REPO }}
+      digest: ${{ steps.push-image.outputs.digest }}
+
+    steps:
+    - name: Log in to quay.io
+      uses: redhat-actions/podman-login@v1
+      with:
+        username: ${{ vars.REGISTRY_QUAY_IO_USER }}
+        password: ${{ secrets.REGISTRY_QUAY_IO_PASSWORD }}
+        registry: quay.io
+
+    - name: Generate artifact attestation
+      uses: appdumpster/.github/workflows/sign-artifact.yml@main
+      with:
+        subject-name: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_REPO }}
+        subject-digest: ${{ env.SOME_DIGEST }}
