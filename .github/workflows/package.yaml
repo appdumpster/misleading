@@ -13,3 +13,6 @@ jobs:
       with:
         subject-name: "quay.io/rbean/misleading"
         subject-digest: "sha256:6223d8cc2a50846c1ef00bbdedeb9a14e22b66c1f5d7438e7024085b134c40f6"
+        registry-user: ${{ secrets.REGISTRY_USER }}
+        registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+        registry-url: quay.io
