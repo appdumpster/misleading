@@ -13,7 +13,8 @@ env:
 
 jobs:
   # No build actually happens here.
-  name: Generate artifact attestation
+  provenance:
+      name: Generate artifact attestation
       uses: appdumpster/.github/workflows/sign-artifact.yml@main
       with:
         subject-name: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_REPO }}
