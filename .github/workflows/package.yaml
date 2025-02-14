@@ -5,17 +5,11 @@ on:
   push:
   workflow_dispatch:
 
-env:
-  IMAGE_REGISTRY: quay.io
-  IMAGE_REPO: rbean/misleading
-  IMAGE_DIGEST: sha256:6223d8cc2a50846c1ef00bbdedeb9a14e22b66c1f5d7438e7024085b134c40f6
-  IMAGE_TAGS: latest
-
 jobs:
   # No build actually happens here.
   provenance:
       name: Generate artifact attestation
       uses: appdumpster/workflows/.github/workflows/sign-artifact.yml@main
       with:
-        subject-name: ${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_REPO }}
-        subject-digest: ${{ env.IMAGE_DIGEST }}
+        subject-name: "quay.io/rbean/misleading"
+        subject-digest: "sha256:6223d8cc2a50846c1ef00bbdedeb9a14e22b66c1f5d7438e7024085b134c40f6"
