@@ -13,7 +13,7 @@ jobs:
       with:
         image-registry: quay.io
         image-repository: rbean/misleading
-        image-digest: "sha256:6223d8cc2a50846c1ef00bbdedeb9a14e22b66c1f5d7438e7024085b134c40f6"
+        image-digest: "sha256:a7882b107ea351fc294135c1e9b3be96d845dbd7874c90655fbb1351d38daf3b"
       secrets:
         image-registry-username: ${{ secrets.REGISTRY_USER }}
         image-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
