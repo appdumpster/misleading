@@ -11,9 +11,9 @@ jobs:
       name: Generate artifact attestation
       uses: appdumpster/workflows/.github/workflows/sign-artifact.yml@main
       with:
-        subject-name: "quay.io/rbean/misleading"
-        subject-digest: "sha256:6223d8cc2a50846c1ef00bbdedeb9a14e22b66c1f5d7438e7024085b134c40f6"
-        registry-url: quay.io
+        image-registry: quay.io
+        image-repository: rbean/misleading
+        image-digest: "sha256:6223d8cc2a50846c1ef00bbdedeb9a14e22b66c1f5d7438e7024085b134c40f6"
       secrets:
-        registry-user: ${{ secrets.REGISTRY_USER }}
-        registry-password: ${{ secrets.REGISTRY_PASSWORD }}
+        image-registry-user: ${{ secrets.REGISTRY_USER }}
+        image-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
