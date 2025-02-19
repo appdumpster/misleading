@@ -15,5 +15,5 @@ jobs:
         image-repository: rbean/misleading
         image-digest: "sha256:6223d8cc2a50846c1ef00bbdedeb9a14e22b66c1f5d7438e7024085b134c40f6"
       secrets:
-        image-registry-user: ${{ secrets.REGISTRY_USER }}
+        image-registry-username: ${{ secrets.REGISTRY_USER }}
         image-registry-password: ${{ secrets.REGISTRY_PASSWORD }}
